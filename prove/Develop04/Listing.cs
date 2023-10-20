@@ -19,7 +19,7 @@ class ListingActivity : Activity
         Console.WriteLine(prompt);
         Thread.Sleep(3000);
 
-        for (int i = 5; i < Duration; i++)
+        for (int i = 0; i < Duration; i++)
         {
             Console.WriteLine("List an item...");
             Thread.Sleep(20000);
