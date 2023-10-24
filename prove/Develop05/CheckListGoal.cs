@@ -1,23 +1,30 @@
-
-
-
-
 public class ChecklistGoal : Goal
 {
-    public int Target { get; set; }
-    public int Count { get; private set; }
+    private int timesCompleted;
 
-    public override int Complete()
+    public ChecklistGoal(string name, string description, int points) : base(name, description, points)
     {
-        if (Count < Target)
-        {
-            Count++;
-            if (Count == Target)
-            {
-                return Points * 2;  // bonus points
-            }
-            return Points;
-        }
-        return 0;
+        timesCompleted = 0;
+    }
+
+    public override void RecordEvent()
+    {
+        timesCompleted++;
+        if (timesCompleted >= 3)
+            isComplete = true;
+    }
+    public override bool IsComplete()
+    {
+        return isComplete;
+    }
+
+    public override string GetDetailsString()
+    {
+        return base.GetDetailsString() + $", Times Completed: {timesCompleted}";
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"ChecklistGoal: {name}, {description}, {points}, {timesCompleted}";
     }
 }
